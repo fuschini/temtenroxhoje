@@ -1,0 +1,29 @@
+service: tem-tenrox-hoje-api
+frameworkVersion: "3"
+
+provider:
+    name: aws
+    runtime: nodejs18.x
+    stage: ${opt:stage, "dev"}
+    logRetentionInDays: 7
+    httpApi:
+        cors: true
+    #     id: ${env:API_GATEWAY_ID}
+    #     disableDefaultEndpoint: true
+
+functions:
+    api:
+        handler: index.handler
+        events:
+            - httpApi: GET /remindersToday
+        # role: arn:aws:iam::261810331311:role/general-lambda-role
+        timeout: 29
+        memorySize: 128
+        environment:
+            NOTION_DB_ID: ${env:NOTION_DB_ID}
+            NOTION_API_SECRET: ${env:NOTION_API_SECRET}
+
+plugins:
+    - serverless-offline
+
+useDotenv: true
