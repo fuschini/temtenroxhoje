@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "deploy": "npm run build && echo 'Uploading to S3...' && aws s3 sync ./dist s3://temtenroxhoje.com && echo 'Deploy completed'"
+    "deploy": "npm run build && echo 'Uploading to S3...' && aws s3 sync ./dist s3://temtenroxhoje.com && echo 'Invalidating CloudFront cache...' && aws cloudfront create-invalidation --distribution-id E3N9P4474QLR8F --paths '/*' > /dev/null && echo 'Deploy completed'"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
