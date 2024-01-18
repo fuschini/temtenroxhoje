@@ -36,11 +36,16 @@
     </div>
 
     <div
-        class="absolute bottom-2 w-[100%] text-center flex justify-center items-baseline gap-1 font-mono"
+        class="absolute bottom-2 w-[100%] text-center flex justify-center items-baseline gap-2 font-mono"
     >
         <span>Made with</span>
         <img src="/squirrel.png" alt="Squirrel disguised as detective emoji" class="w-6" />
-        <span>by Fusca</span>
+        <span>
+            by Fusca.
+            <a href="https://github.com/fuschini/temtenroxhoje" target="_blank" class="underline">
+                Contribute.
+            </a>
+        </span>
     </div>
 </main>
 
