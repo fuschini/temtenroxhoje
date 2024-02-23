@@ -1,6 +1,14 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
+    let loading: Boolean = true;
+
+    onMount(() => {
+        setTimeout(() => {
+            loading = false;
+        }, 5000);
+    });
+
     interface Reminder {
         date: string;
         message: string;
@@ -15,21 +23,30 @@
         const data = await response.json();
         console.log(data);
         reminder = data;
+        loading = false;
     }
 
     loadData();
 </script>
 
 <main
-    class="h-[100%] flex justify-center items-center flex-col {reminder
+    class="h-[100%] flex justify-center items-center flex-col {loading ? 'bg-orange-600' : (reminder
         ? 'bg-green-600'
-        : 'bg-red-600'}"
+        : 'bg-red-600')}"
 >
     <div class="text-white text-xl font-mono">Tem Tenrox hoje?</div>
 
-    <div class="text-[10em] font-bold flex justify-center">
-        {reminder ? "Sim" : "Não"}
-    </div>
+    {#if loading }
+        <div class="text-[10em] font-bold flex justify-center">
+            {"Loading..."}
+        </div>
+    {/if}
+
+    {#if !loading }
+        <div class="text-[10em] font-bold flex justify-center">
+            {reminder ? "Sim" : "Não"}
+        </div>
+    {/if}
 
     <div class="flex justify-center text-xl">
         {reminder ? reminder.message : ""}
