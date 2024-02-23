@@ -17,8 +17,9 @@
     let reminder: Reminder;
 
     async function loadData() {
+        const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const response = await fetch(
-            "https://fuscapi.fuscripts.com/temtenroxhoje/remindersToday?timezone=America/Chicago"
+            `https://fuscapi.fuscripts.com/temtenroxhoje/remindersToday?timezone=${userTimeZone}`
         );
         const data = await response.json();
         console.log(data);
