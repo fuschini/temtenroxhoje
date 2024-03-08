@@ -31,26 +31,28 @@
 </script>
 
 <main
-    class="h-[100%] flex justify-center items-center flex-col {loading ? 'bg-orange-600' : (reminder
-        ? 'bg-green-600'
-        : 'bg-red-600')}"
+    class="h-[100%] flex justify-center items-center flex-col {loading
+        ? 'bg-orange-600'
+        : reminder
+          ? 'bg-green-600'
+          : 'bg-red-600'}"
 >
     <div class="text-white text-xl font-mono">Tem Tenrox hoje?</div>
 
-    {#if loading }
+    {#if loading}
         <div class="text-[10em] font-bold flex justify-center">
             {"Loading..."}
         </div>
     {/if}
 
-    {#if !loading }
+    {#if !loading}
         <div class="text-[10em] font-bold flex justify-center">
             {reminder ? "Sim" : "Não"}
         </div>
     {/if}
 
     <div class="flex justify-center text-xl">
-        {reminder ? reminder.message : ""}
+        <span style="white-space: pre-line">{reminder ? reminder.message.trim() : ""}</span>
     </div>
 
     <div
